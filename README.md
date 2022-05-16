@@ -46,26 +46,25 @@ You can return the answer in any order.
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(nums, target) {
-    
-    //set up results object
-    results = {}
-    
-    for(let i = 0; i < nums.length; i++){
-        // check to see if complement exists
-        let complement = target-nums[i];
-        if(results.hasOwnProperty(complement)){
-            return[results[complement], i];
-        }
-        results[nums[i]] = i;
+var twoSum = function (nums, target) {
+  //set up results object
+  results = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    // check to see if complement exists
+    let complement = target - nums[i];
+    if (results.hasOwnProperty(complement)) {
+      return [results[complement], i];
     }
-    
-    return null;
-    
+    results[nums[i]] = i;
+  }
+
+  return null;
 };
 ```
 
 ### notes:
+
 The _hasOwnProperty()_ method returns a boolean indicating whether the object has the specified property as its own property (as opposed to inheriting it).
 
 [link to leetcode](https://leetcode.com/problems/two-sum/)
@@ -77,13 +76,69 @@ The _hasOwnProperty()_ method returns a boolean indicating whether the object ha
 
 ### prompt:
 
+You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
 ### my solution:
 
 ```js
-// insert solution here
+// My initial naive solution timed out.
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function (prices) {
+  let buyPrice = 0;
+  let sellPrice = 0;
+  let profit = 0;
+
+  for (let i = 0; i < prices.length; i++) {
+    buyPrice = prices[i];
+    for (let j = i + 1; j < prices.length; j++) {
+      if (prices[j] > buyPrice) {
+        sellPrice = prices[j];
+        if (sellPrice - buyPrice > profit) {
+          profit = sellPrice - buyPrice;
+        }
+      }
+    }
+  }
+  return profit;
+};
+
+// After checking the discussion, I came to this solution.
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function (prices) {
+  // trying sliding window
+
+  let buy = 0;
+  let sell = 1;
+  let profit = 0;
+
+  for (let i = 0; i < prices.length - 1; i++) {
+    if (prices[sell] - prices[buy] > profit) {
+      profit = prices[sell] - prices[buy];
+    }
+
+    if (prices[buy] > prices[sell]) {
+      buy = sell;
+    }
+    sell = sell + 1;
+  }
+  return profit;
+};
 ```
 
 ### notes:
+
+The condition to use the sliding window technique is that the problem asks to find the maximum (or minimum) value for a function that calculates the answer repeatedly for a set of ranges from an array.
 
 [link to leetcode](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 
