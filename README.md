@@ -22,6 +22,8 @@ These questions teach you the core concepts and techniques for each category/typ
 8. [string](#string)
 9. [tree](#tree)
 10. [heap](#heap)
+  
+[Common Patterns](#patterns)
 
 <hr>
 
@@ -1437,3 +1439,21 @@ The condition to use the sliding window technique is that the problem asks to fi
 [link to leetcode](https://leetcode.com/problems/find-median-from-data-stream/)
 
 </details>
+  
+<hr>
+
+## Patterns  
+- Sliding Window
+- Two Pointers or Iterators
+- Fast and Slow Pointers
+- Merge Intervals
+- Cyclic Sort
+- In-Place Reversal of - Linked List
+- Tree BFS
+- Tree DFS
+- Two Heaps
+- Subsets
+- Modified Binary Search
+- Top K Elements
+- K-Way Merge 
+- Topological Sort
