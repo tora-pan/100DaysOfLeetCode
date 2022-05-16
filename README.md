@@ -32,13 +32,41 @@ These questions teach you the core concepts and techniques for each category/typ
 
 ### prompt:
 
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
 ### my solution:
 
 ```js
-// solution goes here
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+    
+    //set up results object
+    results = {}
+    
+    for(let i = 0; i < nums.length; i++){
+        // check to see if complement exists
+        let complement = target-nums[i];
+        if(results.hasOwnProperty(complement)){
+            return[results[complement], i];
+        }
+        results[nums[i]] = i;
+    }
+    
+    return null;
+    
+};
 ```
 
 ### notes:
+The _hasOwnProperty()_ method returns a boolean indicating whether the object has the specified property as its own property (as opposed to inheriting it).
 
 [link to leetcode](https://leetcode.com/problems/two-sum/)
 
