@@ -22,7 +22,7 @@ These questions teach you the core concepts and techniques for each category/typ
 8. [string](#string)
 9. [tree](#tree)
 10. [heap](#heap)
-  
+
 [Common Patterns](#patterns)
 
 <hr>
@@ -151,13 +151,30 @@ The condition to use the sliding window technique is that the problem asks to fi
 
 ### prompt:
 
+Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+
 ### my solution:
 
 ```js
-// insert solution here
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var containsDuplicate = function (nums) {
+  let results = {};
+  for (let i = 0; i < nums.length; i++) {
+    if (results.hasOwnProperty(nums[i])) {
+      return true;
+    }
+    results[nums[i]] = i;
+  }
+  return false;
+};
 ```
 
 ### notes:
+
+Nothing really to note here... This was an easy one.
 
 [link to leetcode](https://leetcode.com/problems/contains-duplicate/)
 
@@ -167,6 +184,12 @@ The condition to use the sliding window technique is that the problem asks to fi
 <summary>product of array except self</summary>
 
 ### prompt:
+
+Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+
+The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+
+You must write an algorithm that runs in O(n) time and without using the division operation.
 
 ### my solution:
 
@@ -1442,7 +1465,8 @@ The condition to use the sliding window technique is that the problem asks to fi
   
 <hr>
 
-## Patterns  
+## Patterns
+
 - Sliding Window
 - Two Pointers or Iterators
 - Fast and Slow Pointers
@@ -1455,5 +1479,5 @@ The condition to use the sliding window technique is that the problem asks to fi
 - Subsets
 - Modified Binary Search
 - Top K Elements
-- K-Way Merge 
+- K-Way Merge
 - Topological Sort
